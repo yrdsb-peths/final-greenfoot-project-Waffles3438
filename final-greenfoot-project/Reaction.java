@@ -13,11 +13,12 @@ public class Reaction extends Button
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     public void act(){
-        if (Greenfoot.mouseClicked(this)) {
+        if (Greenfoot.mouseClicked(this)){
             // Code to be executed when the button is clicked
             //System.out.println("Button Clicked!");
             ReactionGame reactiongame = new ReactionGame();
             Greenfoot.setWorld(reactiongame);
         }
+        super.act();
     }
 }

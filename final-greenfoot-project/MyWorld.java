@@ -21,6 +21,11 @@ public class MyWorld extends World
         Button aimtrainer = new Button();
         Button numbermemory = new Button();
         Button verbalmemory = new Button();
+        Label title = new Label("Human Benchmark", 60);
+        Color fontColor = Color.WHITE;
+        title.setFillColor(fontColor);
+        title.setLineColor(fontColor);
+        addObject(title, 300, 40);
         
         addObject(reaction, getWidth() / 4, getHeight() / 2 - 50);
         

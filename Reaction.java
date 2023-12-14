@@ -16,7 +16,7 @@ public class Reaction extends Button
         if (Greenfoot.mouseClicked(this)){
             // Code to be executed when the button is clicked
             //System.out.println("Button Clicked!");
-            ReactionGame reactiongame = new ReactionGame();
+            ReactionTimeGame reactiongame = new ReactionTimeGame();
             Greenfoot.setWorld(reactiongame);
         }
         super.act();

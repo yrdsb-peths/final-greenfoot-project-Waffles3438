@@ -8,16 +8,16 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class RedButton extends Actor
 {
-    private boolean tooearly = false;
     private boolean isWaiting = false; // Start in the waiting state
     private int waitTime;
     private int test;
+    private boolean now = false;
     private SimpleTimer timer = new SimpleTimer();
+    private long elapsedTime;
     
     public RedButton() {
         super();
         resetTimer();
-        
     }
     
     /**
@@ -25,18 +25,31 @@ public class RedButton extends Actor
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     public void act() {
-        //System.out.println("e" + timer.millisElapsed());
-        if (isWaiting && timer.millisElapsed() >= waitTime) {
-            int e = timer.millisElapsed();
-            stopWaiting();
-            //resetTimer();
-        } else {
-            if (Greenfoot.mouseClicked(this)){
-            // Code to be executed when the button is clicked
-                //System.out.println("sus");
-                resetTimer();
+        long test = 0;
+        
+        for(int i = 0; i < 5; i++)
+        {
+            if (isWaiting && timer.millisElapsed() >= waitTime) {
+                int e = timer.millisElapsed();
+                stopWaiting();
+                long startTime = System.currentTimeMillis();
+                if(now && Greenfoot.mouseClicked(this)) {
+                    long endTime = System.currentTimeMillis();
+                    long elapsedTime = endTime - startTime;
+                    now = false;
+                    setImage("red.png");
+                }
+            } else {
+                if (Greenfoot.mouseClicked(this)){
+                    resetTimer();
+                }
             }
+            test = test + elapsedTime;
+            
         }
+        test = test / 5;
+        Results resultworld = new Results();
+        Greenfoot.setWorld(resultworld);
     }
     
     private void resetTimer() {
@@ -51,18 +64,16 @@ public class RedButton extends Actor
 
         // Change the image after waiting
         changeImage();
+        now = true;
     }
 
     private void changeImage() {
         // Change the image to the new image
         GreenfootImage newImage = new GreenfootImage("now.png");
         setImage(newImage);
-        
-        //Temp
-        //System.out.println("e" + timer.millisElapsed());
-        try {
-            //java.lang.Thread.sleep(5000l);
-        } catch (Exception e) {}
     }
-
+    
+    public long getTime(){
+        return test;
+    }
 }

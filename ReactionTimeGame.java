@@ -2,23 +2,19 @@ import greenfoot.*;
 
 public class ReactionTimeGame extends World {
     private RedButton redbutton;
-    private long startTime;
     
     public ReactionTimeGame() {
         super(600, 400, 1);
-            RedButton redbutton = new RedButton();
-            addObject(redbutton , getWidth() / 2, getHeight() / 2);
-            Back back = new Back();
-            addObject(back, 30, 30);
-            startTime = System.currentTimeMillis();
+        redbutton = new RedButton();
+        addObject(redbutton , getWidth() / 2, getHeight() / 2);
+        Back back = new Back();
+        addObject(back, 30, 30);
     }
     
-    public void onClick() {
-        // Calculate elapsed time when the Now actor is clicked
-        long currentTime = System.currentTimeMillis();
-        long elapsedTime = currentTime - startTime;
-
-        // Display the elapsed time in milliseconds
-        System.out.println("Elapsed Time: " + elapsedTime + " milliseconds");
+    /**
+     * Gets redbutton
+     */
+    public RedButton getRedButton() {
+        return redbutton;
     }
 }

@@ -6,6 +6,11 @@ public class ReactionTimeGame extends World {
     
     public ReactionTimeGame() {
         super(600, 400, 1);
+            RedButton redbutton = new RedButton();
+            addObject(redbutton , getWidth() / 2, getHeight() / 2);
+            Back back = new Back();
+            addObject(back, 30, 30);
+            startTime = System.currentTimeMillis();
     }
     
     public void onClick() {
@@ -15,16 +20,5 @@ public class ReactionTimeGame extends World {
 
         // Display the elapsed time in milliseconds
         System.out.println("Elapsed Time: " + elapsedTime + " milliseconds");
-    }
-    
-    public void act() {
-        for(int i = 0; i < 5; i++)
-        {
-            RedButton redbutton = new RedButton();
-            addObject(redbutton , getWidth() / 2, getHeight() / 2);
-            long startTime = System.currentTimeMillis();
-            
-            
-        }
     }
 }

@@ -14,6 +14,7 @@ public class Results extends ReactionTimeGame
      * 
      */
     public Results() {
+        super(true);
         Label result = new Label(getRedButton().getTime() + " ms", 60);
         addObject(result, getWidth() / 2, getHeight() / 2);
     }

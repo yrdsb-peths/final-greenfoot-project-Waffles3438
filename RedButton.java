@@ -8,16 +8,20 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class RedButton extends Actor
 {
-    private boolean tooearly = false;
     private boolean isWaiting = false; // Start in the waiting state
     private int waitTime;
-    private int test;
+    private long test;
+    private boolean now = false;
+    private boolean tooEarly = false;
+    private boolean done = false;
     private SimpleTimer timer = new SimpleTimer();
+    private long nanos;
+    private long startTime;
+    private int count;
     
     public RedButton() {
         super();
         resetTimer();
-        
     }
     
     /**
@@ -25,17 +29,47 @@ public class RedButton extends Actor
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     public void act() {
-        //System.out.println("e" + timer.millisElapsed());
-        if (isWaiting && timer.millisElapsed() >= waitTime) {
-            int e = timer.millisElapsed();
-            stopWaiting();
-            //resetTimer();
-        } else {
-            if (Greenfoot.mouseClicked(this)){
-            // Code to be executed when the button is clicked
-                //System.out.println("sus");
+        if (done) {
+            sleepFor(100);
+            return;
+        }
+        
+        if (count < 5) {
+            long elapsedTime = 0;
+            if (!tooEarly && isWaiting && timer.millisElapsed() >= waitTime) {
+                int e = timer.millisElapsed();
+                stopWaiting();
+                //if(now && Greenfoot.mouseClicked(this)) {
+                //}
+            } else if (now && Greenfoot.mouseClicked(this)) {
+                long endTime = System.currentTimeMillis();
+                elapsedTime = endTime - startTime - waitTime;
+                System.out.println(elapsedTime);
+                now = false;
+                setImage("red.png");
+                count++;
                 resetTimer();
+                test = test + elapsedTime;
+            } else if (tooEarly) {
+                if (Greenfoot.mouseClicked(this)) {
+                    resetTimer();
+                    setImage("red.png");
+                    tooEarly = false;
+                }
+            } else {
+                if (Greenfoot.mouseClicked(this)){
+                    setImage("tooearly.png");
+                    tooEarly = true;
+                    now = false;
+                }
             }
+            
+        } else if (!done) {
+            test = test / 5;
+            Results resultworld = new Results();
+            getWorld().removeObject(this);
+            Greenfoot.setWorld(resultworld);
+            done = true;
         }
     }
     
@@ -43,6 +77,7 @@ public class RedButton extends Actor
         timer.mark();
         waitTime = Greenfoot.getRandomNumber(3000) + 2000;
         isWaiting = true;
+        startTime = System.currentTimeMillis();
     }
     
     private void stopWaiting() {
@@ -51,18 +86,16 @@ public class RedButton extends Actor
 
         // Change the image after waiting
         changeImage();
+        now = true;
     }
 
     private void changeImage() {
         // Change the image to the new image
         GreenfootImage newImage = new GreenfootImage("now.png");
         setImage(newImage);
-        
-        //Temp
-        //System.out.println("e" + timer.millisElapsed());
-        try {
-            //java.lang.Thread.sleep(5000l);
-        } catch (Exception e) {}
     }
-
+    
+    public long getTime(){
+        return test;
+    }
 }

@@ -12,4 +12,6 @@ comment4.params=
 comment4.target=void\ stopWaiting()
 comment5.params=
 comment5.target=void\ changeImage()
-numComments=6
+comment6.params=
+comment6.target=long\ getTime()
+numComments=7

@@ -2,6 +2,9 @@
 comment0.target=ReactionTimeGame
 comment1.params=
 comment1.target=ReactionTimeGame()
-comment2.params=
-comment2.target=void\ onClick()
-numComments=3
+comment2.params=e
+comment2.target=ReactionTimeGame(boolean)
+comment3.params=
+comment3.target=RedButton\ getRedButton()
+comment3.text=\r\n\ Gets\ redbutton\r\n
+numComments=4

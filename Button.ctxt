@@ -8,5 +8,5 @@ comment2.target=void\ raiseButton()
 comment2.text=\r\n\ Moves\ the\ button\ up\r\n
 comment3.params=
 comment3.target=void\ lowerButton()
-comment3.text=\r\n\ \r\n
+comment3.text=\r\n\ Moves\ the\ button\ down\r\n
 numComments=4

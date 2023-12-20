@@ -16,30 +16,15 @@ public class Target extends Actor
     public void act()
     {
         // Add your action code here.
+        AimTrainerGame world = (AimTrainerGame) getWorld();
         if (Greenfoot.mouseClicked(this) && count == 0) {
-            // remove text1, text2 and aimtrainer
-            removeLabelsAndAimTrainer();
+            world.removeLabels();
+            count = 1;
+        }
+        else if(Greenfoot.mouseClicked(this) && count < 31){
+            world.createTarget();
+            count++;
         }
         
-    }
-    
-        private void removeLabelsAndAimTrainer() {
-        // Get a reference to the world
-        World world = getWorld();
-
-        // Remove aimtrainer
-        Label aimtrainer = (Label) world.getObjects(Label.class).get(0);
-        world.removeObject(aimtrainer);
-
-        // Remove text1
-        Label text1 = (Label) world.getObjects(Label.class).get(0);
-        world.removeObject(text1);
-
-        // Remove text2
-        Label text2 = (Label) world.getObjects(Label.class).get(0);
-        world.removeObject(text2);
-        
-        // make sure that it doesn't happen when button is pressed again
-        count = 1;
     }
 }

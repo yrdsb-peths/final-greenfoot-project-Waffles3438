@@ -1,4 +1,5 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import java.util.List;
 
 /**
  * Write a description of class AimTrainerGame here.
@@ -8,7 +9,10 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class AimTrainerGame extends World
 {
-
+    Label text1;
+    Label text2;
+    Label aimtrainer;
+    Target target;
     /**
      * Constructor for objects of class AimTrainerGame.
      * 
@@ -17,22 +21,55 @@ public class AimTrainerGame extends World
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(600, 400, 1);
+        
+        // back button
         Back back = new Back();
-        Label aimtrainer = new Label("Aim Trainer", 60);
+        
+        // aim trainer text and making it white
+        aimtrainer = new Label("Aim Trainer", 60);
         Color fontColor = Color.WHITE;
         aimtrainer.setFillColor(fontColor);
         aimtrainer.setLineColor(fontColor);
-        Label text1 = new Label("Hit 30 targets as quickly as possible", 30);
+        
+        // some more information in white
+        text1 = new Label("Hit 30 targets as quickly as possible", 30);
         text1.setFillColor(fontColor);
         text1.setLineColor(fontColor);
-        Label text2 = new Label("Click the target above to begin", 30);
+        
+        // more information in white
+        text2 = new Label("Click the target above to begin", 30);
         text2.setFillColor(fontColor);
         text2.setLineColor(fontColor);
-        Target target = new Target();
+        
+        // create target
+        target = new Target();
+        
+        // adding it to world
         addObject(aimtrainer, getWidth()/2, getHeight()/5);
         addObject(target, getWidth()/2, getHeight()/2 - 10);
         addObject(text1, getWidth()/2, getHeight()/5 * 4);
         addObject(text2, getWidth()/2, getHeight()/7 * 5);
         addObject(back, 30, 30);
     }
+    
+    /**
+     * removes labels
+     */
+    public void removeLabels(){
+        removeObject(text2);
+        removeObject(text1);
+        removeObject(aimtrainer);
+    }
+    
+    /**
+     * Creates a target
+     */
+    public void createTarget(){
+        removeObject(target);
+        int x = Greenfoot.getRandomNumber(600);
+        int y = Greenfoot.getRandomNumber(400);
+        target = new Target();
+        addObject(target, x, y);
+    }
+    
 }

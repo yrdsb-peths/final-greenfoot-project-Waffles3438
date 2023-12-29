@@ -13,6 +13,7 @@ public class AimTrainerGame extends World
     Label text2;
     Label aimtrainer;
     Target target;
+    Label count;
     /**
      * Constructor for objects of class AimTrainerGame.
      * 
@@ -59,6 +60,10 @@ public class AimTrainerGame extends World
         removeObject(text2);
         removeObject(text1);
         removeObject(aimtrainer);
+        
+        // Amount of times clicked
+        count = new Label(target.getCount(), 30);
+        addObject(count, 575, 25);
     }
     
     /**
@@ -68,8 +73,20 @@ public class AimTrainerGame extends World
         removeObject(target);
         int x = Greenfoot.getRandomNumber(600);
         int y = Greenfoot.getRandomNumber(400);
-        target = new Target();
         addObject(target, x, y);
     }
     
+    /**
+     * update count
+     */
+    public void updateCount(){
+        count.setValue(target.getCount());
+    }
+    
+    /**
+     * remove target
+     */
+    public void removeTarget(){
+        removeObject(target);
+    }
 }

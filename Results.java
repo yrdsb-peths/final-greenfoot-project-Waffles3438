@@ -15,7 +15,7 @@ public class Results extends ReactionTimeGame
      */
     public Results() {
         super(true);
-        Label result = new Label(getRedButton().getTime() + " ms", 60);
+        result = new Label(getRedButton().getTime() + " ms", 60);
         Label text = new Label("Your average time is: ", 60);
         addObject(result, getWidth() / 2, getHeight() / 2 + 25);
         addObject(text, getWidth() / 2, getHeight() / 2 - 25);

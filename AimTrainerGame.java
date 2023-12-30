@@ -89,4 +89,11 @@ public class AimTrainerGame extends World
     public void removeTarget(){
         removeObject(target);
     }
+    
+    /**
+     * Get target
+     */
+    public Target getTarget(){
+        return target;
+    }
 }

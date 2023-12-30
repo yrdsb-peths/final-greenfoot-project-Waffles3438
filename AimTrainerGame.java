@@ -96,4 +96,11 @@ public class AimTrainerGame extends World
     public Target getTarget(){
         return target;
     }
+
+    /**
+     * test
+     */
+    public long test(){
+        return Target.getTime();
+    }
 }

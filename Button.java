@@ -25,7 +25,10 @@ public class Button extends Actor
             }
         }
     }
-
+    
+    /**
+     * Moves the button up
+     */
     private void raiseButton() {
         int targetY = getY() - RAISED_HEIGHT;
 
@@ -39,7 +42,9 @@ public class Button extends Actor
             moveCounter = 0;
         }
     }
-
+    /**
+     * Moves the button down
+     */
     private void lowerButton() {
         int targetY = getY() + RAISED_HEIGHT;
 

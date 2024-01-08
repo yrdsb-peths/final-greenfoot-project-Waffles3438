@@ -34,8 +34,10 @@ public class RedButton extends Actor
             return;
         }
         
+        // gets the average of the test
         if (count < 5) {
             long elapsedTime = 0;
+            // random delay
             if (!tooEarly && isWaiting && timer.millisElapsed() >= waitTime) {
                 int e = timer.millisElapsed();
                 stopWaiting();
@@ -44,7 +46,7 @@ public class RedButton extends Actor
             } else if (now && Greenfoot.mouseClicked(this)) {
                 long endTime = System.currentTimeMillis();
                 elapsedTime = endTime - startTime - waitTime;
-                System.out.println(elapsedTime);
+                //System.out.println(elapsedTime);
                 now = false;
                 setImage("red.png");
                 count++;

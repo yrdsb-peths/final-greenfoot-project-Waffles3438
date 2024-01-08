@@ -19,7 +19,7 @@ public class MyWorld extends World
         super(600, 400, 1);
         Button reaction = new Reaction();
         Button aimtrainer = new AimTrainer();
-        Button numbermemory = new Button();
+        Button numbermemory = new NumberMemory();
         Button verbalmemory = new Button();
         Label title = new Label("Human Benchmark", 45);
         Color fontColor = Color.WHITE;
@@ -29,6 +29,7 @@ public class MyWorld extends World
         
         addObject(reaction, getWidth() / 4, getHeight() / 2 - 65);
         addObject(aimtrainer, getWidth() /4, getHeight() / 4 * 3 + 10);
+        addObject(numbermemory, getWidth() /4 * 3, getHeight() / 2 - 65);
         
     }
 }

@@ -13,7 +13,7 @@ public class Target extends Actor
     private long endTime;
     private long elapsedTime;
     private static long totalTime;
-    private int tests = 5;
+    private int tests = 30;
     
     /**
      * Act - do whatever the Target wants to do. This method is called whenever

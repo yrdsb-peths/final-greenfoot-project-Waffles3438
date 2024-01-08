@@ -1,4 +1,6 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import java.math.BigInteger;
+import java.util.Random;
 
 /**
  * Write a description of class NumberMemoryGame here.
@@ -9,7 +11,10 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class NumberMemoryGame extends World
 {
     private int level = 1;
-    private long userInput = 0;
+    private BigInteger userInput = BigInteger.ZERO;
+    
+    private static Random rng = new Random();
+    private BigInteger num;
     
     /**
      * Constructor for objects of class NumberMemoryGame.
@@ -29,7 +34,7 @@ public class NumberMemoryGame extends World
         if(input != null){
             // Check if the pressed key is a number
             if(isNumeric(input)){
-                userInput = userInput * 10 + Integer.parseInt(input);
+                userInput = userInput.multiply(BigInteger.TEN).add(new BigInteger(input));
                 System.out.println(userInput);
             }
             // Check if the Enter key is pressed
@@ -39,8 +44,11 @@ public class NumberMemoryGame extends World
             // Check if the Backspace key is pressed
             else if(input.equals("backspace")){
                 // Remove the last digit from userInput
-                userInput = userInput / 10;
+                userInput = userInput.divide(BigInteger.TEN);
                 System.out.println(userInput);
+                
+                nextLevel();
+                System.out.println(num);
             }
             // Handle other cases if needed
         }
@@ -51,11 +59,20 @@ public class NumberMemoryGame extends World
         System.out.println("Processing user input: " + userInput);
 
         // Clear userInput for the next input
-        userInput = 0;
+        userInput = BigInteger.ZERO;
     }
 
     // Utility method to check if a string is numeric
     private boolean isNumeric(String str) {
         return str.matches("\\d+"); // Matches one or more digits
+    }
+    
+    private void nextLevel() {
+        num = BigInteger.valueOf(rng.nextInt(9)).add(BigInteger.ONE);
+        
+        for (int i = 1; i < level; i++) {
+            num = num.multiply(BigInteger.TEN).add(BigInteger.valueOf(rng.nextInt(10)));
+        }
+        level++;
     }
 }

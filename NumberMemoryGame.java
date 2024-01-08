@@ -68,8 +68,10 @@ public class NumberMemoryGame extends World
     }
     
     private void nextLevel() {
+        // generate an 1 digit number
         num = BigInteger.valueOf(rng.nextInt(9)).add(BigInteger.ONE);
         
+        // for ever new level add another digit
         for (int i = 1; i < level; i++) {
             num = num.multiply(BigInteger.TEN).add(BigInteger.valueOf(rng.nextInt(10)));
         }

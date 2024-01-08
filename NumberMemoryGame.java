@@ -9,7 +9,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class NumberMemoryGame extends World
 {
     private int level = 1;
-    private String userInput = "";
+    private long userInput = 0;
     
     /**
      * Constructor for objects of class NumberMemoryGame.
@@ -29,20 +29,18 @@ public class NumberMemoryGame extends World
         if(input != null){
             // Check if the pressed key is a number
             if(isNumeric(input)){
-                userInput += input;
+                userInput = userInput * 10 + Integer.parseInt(input);
                 System.out.println(userInput);
             }
             // Check if the Enter key is pressed
             else if(input.equals("enter")){
                 processUserInput();
             }
-            
+            // Check if the Backspace key is pressed
             else if(input.equals("backspace")){
-                // Remove the last character from userInput
-                if(userInput.length() > 0){
-                    userInput = userInput.substring(0, userInput.length() - 1);
-                    System.out.println(userInput);
-                }
+                // Remove the last digit from userInput
+                userInput = userInput / 10;
+                System.out.println(userInput);
             }
             // Handle other cases if needed
         }
@@ -53,7 +51,7 @@ public class NumberMemoryGame extends World
         System.out.println("Processing user input: " + userInput);
 
         // Clear userInput for the next input
-        userInput = "";
+        userInput = 0;
     }
 
     // Utility method to check if a string is numeric

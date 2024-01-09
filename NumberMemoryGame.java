@@ -16,18 +16,27 @@ public class NumberMemoryGame extends World
     private static Random rng = new Random();
     private BigInteger num;
     private Label textbox;
+    private SimpleTimer timer = new SimpleTimer();
+    private int waittime = 5000;
+    private boolean game;
+    private long starttime;
+    private long endtime;
+    private long elapsedtime;
     
     /**
      * Constructor for objects of class NumberMemoryGame.
      * 
      */
-    public NumberMemoryGame()
+    public NumberMemoryGame(boolean flag)
     {    
-            // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
+        // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(600, 400, 1);
-        level = 1;
+        if(flag)
+            level = 1;
         Back back = new Back();
         addObject(back, 30, 30);
+        game = true;
+        resetTimer();
         
         // Initialize the displayNum Label
         displayNum = new Label("", 60);  // Initialize with an empty string
@@ -37,14 +46,20 @@ public class NumberMemoryGame extends World
         textbox = new Label("", 60);
         addObject(textbox, getWidth() / 2, getHeight() / 2 + 40);
         
-        // Call nextLevel after initializing displayNum
-        nextLevel();
+        if (flag)
+            nextLevel();
     }
     
     public void act(){
         String input = Greenfoot.getKey();
+        endtime = System.currentTimeMillis();
+        elapsedtime = endtime - starttime;
+        //System.out.println(elapsedtime);
+        if(elapsedtime >= 5000){
+            removeObject(displayNum);
+        }
         
-        if(input != null){
+        if(input != null && elapsedtime >= 5000){
             // Check if the pressed key is a number
             if(isNumeric(input)){
                 userInput = userInput.multiply(BigInteger.TEN).add(new BigInteger(input));
@@ -52,12 +67,16 @@ public class NumberMemoryGame extends World
             // Check if the Enter key is pressed
             else if(input.equals("enter")){
                 if(!userInput.equals(num)){
+                    level -= 2;
                     MemoryResults world = new MemoryResults();
                     Greenfoot.setWorld(world);
+                    return;
                 }
 
                 processUserInput();
                 nextLevel();
+                resetTimer();
+                addObject(displayNum, getWidth() / 2, getHeight() / 2 - 40);
             }
             // Check if the Backspace key is pressed
             else if(input.equals("backspace")){
@@ -118,5 +137,13 @@ public class NumberMemoryGame extends World
      */
     public void removeTextbox() {
         removeObject(textbox);
+    }
+    
+    /**
+     * Resets timer
+     */
+    private void resetTimer() {
+        timer.mark();
+        starttime = System.currentTimeMillis();
     }
 }

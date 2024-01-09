@@ -17,7 +17,7 @@ public class NumberMemory extends Button
         // Add your action code here.
         if (Greenfoot.mouseClicked(this)){
             // Code to be executed when the button is clicked
-            NumberMemoryGame memorygame = new NumberMemoryGame();
+            NumberMemoryGame memorygame = new NumberMemoryGame(true);
             Greenfoot.setWorld(memorygame);
         }
         super.act();

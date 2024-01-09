@@ -15,9 +15,11 @@ public class MemoryResults extends NumberMemoryGame
      */
     public MemoryResults()
     {
+        super(false);
         // Display the result label
-        result = new Label("You memorized a maximum of " + NumberMemoryGame.getLevel() + " digits", 30);
+        result = new Label("You memorized a maximum of " + super.getLevel() + " digits", 30);
         addObject(result, getWidth() / 2, getHeight() / 2);
+        System.out.println(NumberMemoryGame.getLevel());
         
         // Remove displayNum and textbox from the world
         removeDisplayNum();

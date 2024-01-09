@@ -39,20 +39,20 @@ public class RedButton extends Actor
             long elapsedTime = 0;
             // random delay
             if (!tooEarly && isWaiting && timer.millisElapsed() >= waitTime) {
+                // change the image to the other one
                 int e = timer.millisElapsed();
                 stopWaiting();
-                //if(now && Greenfoot.mouseClicked(this)) {
-                //}
             } else if (now && Greenfoot.mouseClicked(this)) {
+                // if clicked again when its green
                 long endTime = System.currentTimeMillis();
                 elapsedTime = endTime - startTime - waitTime;
-                //System.out.println(elapsedTime);
                 now = false;
                 setImage("red.png");
                 count++;
                 resetTimer();
                 test = test + elapsedTime;
             } else if (tooEarly) {
+                // if its too early change it to too early
                 if (Greenfoot.mouseClicked(this)) {
                     resetTimer();
                     setImage("red.png");
@@ -67,6 +67,7 @@ public class RedButton extends Actor
             }
             
         } else if (!done) {
+            // calculate the average then change worlds
             test = test / 5;
             Results resultworld = new Results();
             getWorld().removeObject(this);
@@ -75,6 +76,9 @@ public class RedButton extends Actor
         }
     }
     
+    /**
+     * Resets timer
+     */
     private void resetTimer() {
         timer.mark();
         waitTime = Greenfoot.getRandomNumber(3000) + 2000;
@@ -82,6 +86,9 @@ public class RedButton extends Actor
         startTime = System.currentTimeMillis();
     }
     
+    /**
+     * Stops waiting
+     */
     private void stopWaiting() {
         // Change the state to not waiting
         isWaiting = false;
@@ -91,12 +98,18 @@ public class RedButton extends Actor
         now = true;
     }
 
+    /**
+     * Change the image
+     */
     private void changeImage() {
         // Change the image to the new image
         GreenfootImage newImage = new GreenfootImage("now.png");
         setImage(newImage);
     }
     
+    /**
+     * Returns test
+     */
     public long getTime(){
         return test;
     }

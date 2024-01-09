@@ -22,6 +22,8 @@ public class NumberMemoryGame extends World
     private long starttime;
     private long endtime;
     private long elapsedtime;
+    private Label text;
+    private Label text1;
     
     /**
      * Constructor for objects of class NumberMemoryGame.
@@ -37,14 +39,17 @@ public class NumberMemoryGame extends World
         addObject(back, 30, 30);
         game = true;
         resetTimer();
+        text = new Label("Type the number you just saw", 40);
+        text1 = new Label("Remember this number", 40);
+        addObject(text1, getWidth() / 2, 350);
         
         // Initialize the displayNum Label
         displayNum = new Label("", 60);  // Initialize with an empty string
-        addObject(displayNum, getWidth() / 2, getHeight() / 2 - 40); // Centered on the screen
+        addObject(displayNum, getWidth() / 2, getHeight() / 2); // Centered on the screen
         
         // displaying the textbox
         textbox = new Label("", 60);
-        addObject(textbox, getWidth() / 2, getHeight() / 2 + 40);
+        addObject(textbox, getWidth() / 2, getHeight() / 2);
         
         if (flag)
             nextLevel();
@@ -56,7 +61,10 @@ public class NumberMemoryGame extends World
         elapsedtime = endtime - starttime;
         //System.out.println(elapsedtime);
         if(elapsedtime >= 5000){
+            // remove the number after 5 seconds
             removeObject(displayNum);
+            removeObject(text1);
+            addObject(text, getWidth() / 2, 350);
         }
         
         if(input != null && elapsedtime >= 5000){
@@ -74,9 +82,11 @@ public class NumberMemoryGame extends World
                 }
 
                 processUserInput();
+                removeObject(text);
                 nextLevel();
                 resetTimer();
-                addObject(displayNum, getWidth() / 2, getHeight() / 2 - 40);
+                addObject(displayNum, getWidth() / 2, getHeight() / 2);
+                addObject(text1, getWidth() /2, 350);
             }
             // Check if the Backspace key is pressed
             else if(input.equals("backspace")){
@@ -92,12 +102,16 @@ public class NumberMemoryGame extends World
         }
     }
 
+    /**
+     * Clear userInput for next input
+     */
     private void processUserInput() {
-        // Clear userInput for the next input
         userInput = BigInteger.ZERO;
     }
 
-    // Utility method to check if a string is numeric
+    /**
+     * Check if the string is all numbers
+     */
     private boolean isNumeric(String str) {
         return str.matches("\\d+"); // Matches one or more digits
     }
@@ -145,5 +159,14 @@ public class NumberMemoryGame extends World
     private void resetTimer() {
         timer.mark();
         starttime = System.currentTimeMillis();
+    }
+    
+    /**
+     * Remove text
+     */
+    public void removeTexts(){
+        removeObject(text);
+        text.setValue("");
+        removeObject(text1);
     }
 }

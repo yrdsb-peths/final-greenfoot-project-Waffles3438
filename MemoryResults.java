@@ -19,10 +19,12 @@ public class MemoryResults extends NumberMemoryGame
         // Display the result label
         result = new Label("You memorized a maximum of " + super.getLevel() + " digits", 30);
         addObject(result, getWidth() / 2, getHeight() / 2);
-        System.out.println(NumberMemoryGame.getLevel());
+        Label text = new Label("The average person can memorize 7 digits", 30);
+        addObject(text, getWidth() / 2, 350);
         
         // Remove displayNum and textbox from the world
         removeDisplayNum();
         removeTextbox();
+        removeTexts();
     }
 }

@@ -11,10 +11,10 @@ import java.util.Random;
 public class NumberMemoryGame extends World
 {
     private static int level = 1;
-    private BigInteger userInput = BigInteger.ZERO;
+    private static BigInteger userInput;
     private Label displayNum;
     private static Random rng = new Random();
-    private BigInteger num = BigInteger.ZERO;
+    protected static BigInteger num = BigInteger.ZERO;
     private Label textbox;
     private SimpleTimer timer = new SimpleTimer();
     private int waittime = 5000;
@@ -25,7 +25,6 @@ public class NumberMemoryGame extends World
     private Label text;
     private Label text1;
     private int test;
-    private BigInteger lastNum = BigInteger.ZERO;
     
     /**
      * Constructor for objects of class NumberMemoryGame.
@@ -66,6 +65,10 @@ public class NumberMemoryGame extends World
         endtime = System.currentTimeMillis();
         elapsedtime = endtime - starttime;
         //System.out.println(elapsedtime);
+        if (elapsedtime <= 5000) {
+            processUserInput();
+        }
+        
         if(elapsedtime >= 5000){
             // remove the number after 5 seconds
             removeObject(displayNum);
@@ -84,9 +87,8 @@ public class NumberMemoryGame extends World
                 if(!userInput.equals(num)){
                     level -= 2;
                     MemoryResults world = new MemoryResults();
-                    Greenfoot.setWorld(world);                    
-                    lastNum = num;
-                    System.out.println(lastNum);
+                    Greenfoot.setWorld(world);
+                    return;
                 }
                 else{
                     processUserInput();
@@ -120,15 +122,8 @@ public class NumberMemoryGame extends World
     /**
      * Getter for userInput
      */
-    public String getUserInput(){
+    public static String getUserInput(){
         return userInput.toString();
-    }
-    
-    /**
-     * Getter for textbox
-     */
-    public String getNum(){
-        return lastNum.toString();
     }
     
     /**

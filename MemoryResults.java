@@ -1,4 +1,4 @@
-import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+    import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
  * Write a description of class MemoryResults here.
@@ -22,7 +22,7 @@ public class MemoryResults extends NumberMemoryGame
         Label text = new Label("The average person can memorize 7 digits", 30);
         addObject(text, getWidth() / 2, 350);
         Label WhatYouTyped = new Label("You typed: " + super.getUserInput(), 30);
-        Label ActualNum = new Label("The actual number is: " + super.getNum(), 30);
+        Label ActualNum = new Label("The actual number is: " + super.num, 30);
         addObject(WhatYouTyped, getWidth() / 2, getHeight() / 2 - 20);
         addObject(ActualNum, getWidth() / 2, getHeight() / 2 + 20);
         

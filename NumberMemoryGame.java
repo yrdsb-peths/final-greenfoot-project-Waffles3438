@@ -10,71 +10,174 @@ import java.util.Random;
  */
 public class NumberMemoryGame extends World
 {
-    private int level = 1;
+    private static int level = 1;
     private BigInteger userInput = BigInteger.ZERO;
-    
+    private Label displayNum;
     private static Random rng = new Random();
     private BigInteger num;
+    private Label textbox;
+    private SimpleTimer timer = new SimpleTimer();
+    private int waittime = 5000;
+    private boolean game;
+    private long starttime;
+    private long endtime;
+    private long elapsedtime;
+    private Label text;
+    private Label text1;
+    private int test;
     
     /**
      * Constructor for objects of class NumberMemoryGame.
      * 
      */
-    public NumberMemoryGame()
+    public NumberMemoryGame(boolean flag)
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(600, 400, 1);
+        if(flag)
+            level = 1;
         Back back = new Back();
         addObject(back, 30, 30);
+        game = true;
+        resetTimer();
+        text = new Label("Type the number you just saw", 40);
+        text1 = new Label("Remember this number", 40);
+        addObject(text1, getWidth() / 2, 350);
+        test = 1;
+        
+        // Initialize the displayNum Label
+        displayNum = new Label("", 60);  // Initialize with an empty string
+        addObject(displayNum, getWidth() / 2, getHeight() / 2); // Centered on the screen
+        
+        // displaying the textbox
+        textbox = new Label("", 60);
+        addObject(textbox, getWidth() / 2, getHeight() / 2);
+        
+        if (flag)
+            nextLevel();
     }
     
     public void act(){
+        if(test == 1){
+            textbox.setValue("");
+        }
         String input = Greenfoot.getKey();
+        endtime = System.currentTimeMillis();
+        elapsedtime = endtime - starttime;
+        //System.out.println(elapsedtime);
+        if(elapsedtime >= 5000){
+            // remove the number after 5 seconds
+            removeObject(displayNum);
+            removeObject(text1);
+            addObject(text, getWidth() / 2, 350);
+        }
         
-        if(input != null){
+        if(input != null && elapsedtime >= 0){
             // Check if the pressed key is a number
             if(isNumeric(input)){
                 userInput = userInput.multiply(BigInteger.TEN).add(new BigInteger(input));
-                System.out.println(userInput);
+                test = 2;
             }
             // Check if the Enter key is pressed
             else if(input.equals("enter")){
+                if(!userInput.equals(num)){
+                    level -= 2;
+                    MemoryResults world = new MemoryResults();
+                    Greenfoot.setWorld(world);
+                    return;
+                }
                 processUserInput();
+                removeObject(text);
+                nextLevel();
+                resetTimer();
+                addObject(displayNum, getWidth() / 2, getHeight() / 2);
+                addObject(text1, getWidth() /2, 350);
             }
-            // Check if the Backspace key is pressed
+            
             else if(input.equals("backspace")){
                 // Remove the last digit from userInput
                 userInput = userInput.divide(BigInteger.TEN);
-                System.out.println(userInput);
-                
-                nextLevel();
-                System.out.println(num);
+    
+                // Update textbox value
+                if (userInput.equals(BigInteger.ZERO)) {
+                    test = 1;
+                } else {
+                    textbox.setValue(userInput.toString());
+                }
             }
-            // Handle other cases if needed
+        }
+            
+        // update label
+        if(test != 1){
+            textbox.setValue(userInput.toString());
         }
     }
 
+    /**
+     * Clear userInput for next input
+     */
     private void processUserInput() {
-        // Process the userInput (add your code here)
-        System.out.println("Processing user input: " + userInput);
-
-        // Clear userInput for the next input
         userInput = BigInteger.ZERO;
     }
 
-    // Utility method to check if a string is numeric
+    /**
+     * Check if the string is all numbers
+     */
     private boolean isNumeric(String str) {
         return str.matches("\\d+"); // Matches one or more digits
     }
     
+    /**
+     * Generates a random number and adds one to the level
+     */
     private void nextLevel() {
-        // generate an 1 digit number
         num = BigInteger.valueOf(rng.nextInt(9)).add(BigInteger.ONE);
         
         // for ever new level add another digit
         for (int i = 1; i < level; i++) {
             num = num.multiply(BigInteger.TEN).add(BigInteger.valueOf(rng.nextInt(10)));
         }
+        
+        // increase level and update label
         level++;
+        displayNum.setValue(num.toString());
+    }
+    
+    /**
+     * Getter for level
+     */
+    public static int getLevel(){
+        return level;
+    }
+    
+    /**
+     * Remove displayNum from the world
+     */
+    public void removeDisplayNum() {
+        removeObject(displayNum);
+    }
+
+    /**
+     * Remove textbox from the world
+     */
+    public void removeTextbox() {
+        removeObject(textbox);
+    }
+    
+    /**
+     * Resets timer
+     */
+    private void resetTimer() {
+        timer.mark();
+        starttime = System.currentTimeMillis();
+    }
+    
+    /**
+     * Remove text
+     */
+    public void removeTexts(){
+        removeObject(text);
+        text.setValue("");
+        removeObject(text1);
     }
 }

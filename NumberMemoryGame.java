@@ -72,7 +72,7 @@ public class NumberMemoryGame extends World
             addObject(text, getWidth() / 2, 350);
         }
         
-        if(input != null && elapsedtime >= 0){
+        if(input != null && elapsedtime >= 5000){
             // Check if the pressed key is a number
             if(isNumeric(input)){
                 userInput = userInput.multiply(BigInteger.TEN).add(new BigInteger(input));
@@ -118,6 +118,7 @@ public class NumberMemoryGame extends World
      */
     private void processUserInput() {
         userInput = BigInteger.ZERO;
+        test = 1;
     }
 
     /**

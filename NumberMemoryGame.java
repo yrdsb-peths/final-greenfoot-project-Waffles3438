@@ -14,7 +14,7 @@ public class NumberMemoryGame extends World
     private BigInteger userInput = BigInteger.ZERO;
     private Label displayNum;
     private static Random rng = new Random();
-    private BigInteger num;
+    private BigInteger num = BigInteger.ZERO;
     private Label textbox;
     private SimpleTimer timer = new SimpleTimer();
     private int waittime = 5000;
@@ -25,6 +25,7 @@ public class NumberMemoryGame extends World
     private Label text;
     private Label text1;
     private int test;
+    private BigInteger lastNum = BigInteger.ZERO;
     
     /**
      * Constructor for objects of class NumberMemoryGame.
@@ -83,15 +84,18 @@ public class NumberMemoryGame extends World
                 if(!userInput.equals(num)){
                     level -= 2;
                     MemoryResults world = new MemoryResults();
-                    Greenfoot.setWorld(world);
-                    return;
+                    Greenfoot.setWorld(world);                    
+                    lastNum = num;
+                    System.out.println(lastNum);
                 }
-                processUserInput();
-                removeObject(text);
-                nextLevel();
-                resetTimer();
-                addObject(displayNum, getWidth() / 2, getHeight() / 2);
-                addObject(text1, getWidth() /2, 350);
+                else{
+                    processUserInput();
+                    removeObject(text);
+                    nextLevel();
+                    resetTimer();
+                    addObject(displayNum, getWidth() / 2, getHeight() / 2);
+                    addObject(text1, getWidth() /2, 350);
+                }
             }
             
             else if(input.equals("backspace")){
@@ -124,7 +128,7 @@ public class NumberMemoryGame extends World
      * Getter for textbox
      */
     public String getNum(){
-        return num.toString();
+        return lastNum.toString();
     }
     
     /**

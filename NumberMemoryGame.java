@@ -112,7 +112,21 @@ public class NumberMemoryGame extends World
             textbox.setValue(userInput.toString());
         }
     }
-
+    
+    /**
+     * Getter for userInput
+     */
+    public String getUserInput(){
+        return userInput.toString();
+    }
+    
+    /**
+     * Getter for textbox
+     */
+    public String getNum(){
+        return num.toString();
+    }
+    
     /**
      * Clear userInput for next input
      */

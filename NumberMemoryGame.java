@@ -24,6 +24,7 @@ public class NumberMemoryGame extends World
     private long elapsedtime;
     private Label text;
     private Label text1;
+    private int test;
     
     /**
      * Constructor for objects of class NumberMemoryGame.
@@ -42,6 +43,7 @@ public class NumberMemoryGame extends World
         text = new Label("Type the number you just saw", 40);
         text1 = new Label("Remember this number", 40);
         addObject(text1, getWidth() / 2, 350);
+        test = 1;
         
         // Initialize the displayNum Label
         displayNum = new Label("", 60);  // Initialize with an empty string
@@ -56,6 +58,9 @@ public class NumberMemoryGame extends World
     }
     
     public void act(){
+        if(test == 1){
+            textbox.setValue("");
+        }
         String input = Greenfoot.getKey();
         endtime = System.currentTimeMillis();
         elapsedtime = endtime - starttime;
@@ -67,10 +72,11 @@ public class NumberMemoryGame extends World
             addObject(text, getWidth() / 2, 350);
         }
         
-        if(input != null && elapsedtime >= 5000){
+        if(input != null && elapsedtime >= 0){
             // Check if the pressed key is a number
             if(isNumeric(input)){
                 userInput = userInput.multiply(BigInteger.TEN).add(new BigInteger(input));
+                test = 2;
             }
             // Check if the Enter key is pressed
             else if(input.equals("enter")){
@@ -80,7 +86,6 @@ public class NumberMemoryGame extends World
                     Greenfoot.setWorld(world);
                     return;
                 }
-
                 processUserInput();
                 removeObject(text);
                 nextLevel();
@@ -88,17 +93,23 @@ public class NumberMemoryGame extends World
                 addObject(displayNum, getWidth() / 2, getHeight() / 2);
                 addObject(text1, getWidth() /2, 350);
             }
-            // Check if the Backspace key is pressed
+            
             else if(input.equals("backspace")){
                 // Remove the last digit from userInput
                 userInput = userInput.divide(BigInteger.TEN);
+    
+                // Update textbox value
+                if (userInput.equals(BigInteger.ZERO)) {
+                    test = 1;
+                } else {
+                    textbox.setValue(userInput.toString());
+                }
             }
+        }
             
-            // update label
+        // update label
+        if(test != 1){
             textbox.setValue(userInput.toString());
-            if(userInput == BigInteger.ZERO){
-                textbox.setValue("");
-            }
         }
     }
 

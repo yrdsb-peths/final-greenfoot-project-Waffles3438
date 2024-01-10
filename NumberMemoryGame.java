@@ -11,10 +11,10 @@ import java.util.Random;
 public class NumberMemoryGame extends World
 {
     private static int level = 1;
-    private BigInteger userInput = BigInteger.ZERO;
+    private static BigInteger userInput;
     private Label displayNum;
     private static Random rng = new Random();
-    private BigInteger num;
+    protected static BigInteger num = BigInteger.ZERO;
     private Label textbox;
     private SimpleTimer timer = new SimpleTimer();
     private int waittime = 5000;
@@ -65,6 +65,10 @@ public class NumberMemoryGame extends World
         endtime = System.currentTimeMillis();
         elapsedtime = endtime - starttime;
         //System.out.println(elapsedtime);
+        if (elapsedtime <= 5000) {
+            processUserInput();
+        }
+        
         if(elapsedtime >= 5000){
             // remove the number after 5 seconds
             removeObject(displayNum);
@@ -86,12 +90,14 @@ public class NumberMemoryGame extends World
                     Greenfoot.setWorld(world);
                     return;
                 }
-                processUserInput();
-                removeObject(text);
-                nextLevel();
-                resetTimer();
-                addObject(displayNum, getWidth() / 2, getHeight() / 2);
-                addObject(text1, getWidth() /2, 350);
+                else{
+                    processUserInput();
+                    removeObject(text);
+                    nextLevel();
+                    resetTimer();
+                    addObject(displayNum, getWidth() / 2, getHeight() / 2);
+                    addObject(text1, getWidth() /2, 350);
+                }
             }
             
             else if(input.equals("backspace")){
@@ -112,7 +118,14 @@ public class NumberMemoryGame extends World
             textbox.setValue(userInput.toString());
         }
     }
-
+    
+    /**
+     * Getter for userInput
+     */
+    public static String getUserInput(){
+        return userInput.toString();
+    }
+    
     /**
      * Clear userInput for next input
      */

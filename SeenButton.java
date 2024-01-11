@@ -35,7 +35,5 @@ public class SeenButton
             // Change the image back to the normal state
             setImage(normalImage);
         }
-
-        // Add your other action code here.
     }
 }

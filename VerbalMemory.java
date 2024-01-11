@@ -17,7 +17,7 @@ public class VerbalMemory extends Button
         // Add your action code here.
         if (Greenfoot.mouseClicked(this)){
             // Code to be executed when the button is clicked
-            VerbalMemoryGame verbalmemory = new VerbalMemoryGame();
+            VerbalMemoryGame verbalmemory = new VerbalMemoryGame(true);
             Greenfoot.setWorld(verbalmemory);
         }
         super.act();

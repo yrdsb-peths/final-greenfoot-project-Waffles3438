@@ -6,7 +6,7 @@ all they need to know. The comments should usually include at least:
 
 PROJECT TITLE: Human Benchmark
 PURPOSE OF PROJECT: Benchmark yourself compared to the average human
-VERSION or DATE: pre-alpha
-HOW TO START THIS PROJECT: idk tbh
-AUTHORS: me and chatgpt (mainly chatgpt)
+VERSION or DATE: kinda works(?) 
+HOW TO START THIS PROJECT: run the game in greenfoot
+AUTHORS: me
 USER INSTRUCTIONS: run it and try the tests and see if you are above or below average!

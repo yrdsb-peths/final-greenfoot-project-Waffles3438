@@ -17,6 +17,8 @@ public class VerbalResults extends VerbalMemoryGame
     public VerbalResults()
     {
         super(false);
+        
+        // gets the score from VerbalMemoryGame and displays it.
         scorecount = new Label(VerbalMemoryGame.getScore() + " words", 50);
         addObject(scorecount, getWidth() / 2, getHeight() / 2);
         super.remove();

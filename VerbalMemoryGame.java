@@ -105,6 +105,7 @@ public class VerbalMemoryGame extends World
             else if(Greenfoot.mouseClicked(seenbutton) && !seenWords.contains(newWords[rng])){
                 life--;
                 lives.setValue("Lives: "+ life);
+                seenWords.add(newWords[rng]);
                 test = 0;
             }
             

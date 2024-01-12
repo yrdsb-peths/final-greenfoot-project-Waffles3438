@@ -69,7 +69,7 @@ public class RedButton extends Actor
         } 
         else if (!done) {
             // calculate the average then change worlds
-            test = test / tests;
+            test = test / tests * 7 / 10; // I SWEAR THERE IS LIKE A MASSIVE INPUT DELAY SO I MULTIPLIED IT BY 0.75 TO REMOVE IT
             Results resultworld = new Results();
             getWorld().removeObject(this);
             Greenfoot.setWorld(resultworld);

@@ -29,18 +29,12 @@ public class AimTrainerGame extends World
         // aim trainer text and making it white
         aimtrainer = new Label("Aim Trainer", 60);
         Color fontColor = Color.WHITE;
-        aimtrainer.setFillColor(fontColor);
-        aimtrainer.setLineColor(fontColor);
         
         // some more information in white
         text1 = new Label("Hit 30 targets as quickly as possible", 30);
-        text1.setFillColor(fontColor);
-        text1.setLineColor(fontColor);
         
         // more information in white
         text2 = new Label("Click the target above to begin", 30);
-        text2.setFillColor(fontColor);
-        text2.setLineColor(fontColor);
         
         // create target
         target = new Target();

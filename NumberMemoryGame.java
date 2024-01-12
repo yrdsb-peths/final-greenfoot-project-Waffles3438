@@ -40,7 +40,7 @@ public class NumberMemoryGame extends World
         addObject(back, 30, 30);
         game = true;
         resetTimer();
-        text = new Label("Type the number you just saw", 40);
+        text = new Label("Enter the number you just saw", 40);
         text1 = new Label("Remember this number", 40);
         addObject(text1, getWidth() / 2, 350);
         test = 1;

@@ -14,6 +14,7 @@ public class Target extends Actor
     private long elapsedTime;
     private static long totalTime;
     private int tests = 30;
+    GreenfootSound pop = new GreenfootSound("pop.mp3");
     
     /**
      * Act - do whatever the Target wants to do. This method is called whenever
@@ -37,6 +38,8 @@ public class Target extends Actor
         }
         else if(Greenfoot.mouseClicked(this) && count > 0){
             // ends timer and creates a new target at a new location
+            pop.setVolume(50);
+            pop.play();
             endTime = System.currentTimeMillis();
             world.createTarget();
             count--;

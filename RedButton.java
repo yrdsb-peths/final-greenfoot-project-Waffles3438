@@ -18,6 +18,7 @@ public class RedButton extends Actor
     private long nanos;
     private long startTime;
     private int count;
+    private int tests = 5;
     
     public RedButton() {
         super();
@@ -35,17 +36,17 @@ public class RedButton extends Actor
         }
         
         // gets the average of the test
-        if (count < 5) {
+        if (count < tests) {
             long elapsedTime = 0;
             // random delay
             if (!tooEarly && isWaiting && timer.millisElapsed() >= waitTime) {
                 // change the image to the other one
-                int e = timer.millisElapsed();
                 stopWaiting();
+                startTime = System.currentTimeMillis();
             } else if (now && Greenfoot.mouseClicked(this)) {
                 // if clicked again when its green
                 long endTime = System.currentTimeMillis();
-                elapsedTime = endTime - startTime - waitTime;
+                elapsedTime = endTime - startTime;
                 now = false;
                 setImage("red.png");
                 count++;
@@ -65,10 +66,10 @@ public class RedButton extends Actor
                     now = false;
                 }
             }
-            
-        } else if (!done) {
+        } 
+        else if (!done) {
             // calculate the average then change worlds
-            test = test / 5;
+            test = test / tests;
             Results resultworld = new Results();
             getWorld().removeObject(this);
             Greenfoot.setWorld(resultworld);
@@ -83,7 +84,6 @@ public class RedButton extends Actor
         timer.mark();
         waitTime = Greenfoot.getRandomNumber(3000) + 2000;
         isWaiting = true;
-        startTime = System.currentTimeMillis();
     }
     
     /**

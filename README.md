@@ -7,5 +7,4 @@
 > Run greenfoot and click project.greenfoot. Run the tests and compare yourself to the average!
 
 ## Credits
-> Based off: https://humanbenchmark.com/
-Made by: Benny Wang
+> Based off: https://humanbenchmark.com/ | Made by: Benny Wang

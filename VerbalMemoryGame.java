@@ -23,7 +23,7 @@ public class VerbalMemoryGame extends World
         , "keyboard", "camera", "window", "laptop", "grade", "accounting", "engineering", "farmer", "farming", "auto", "who"
         , "rice", "dog", "cat", "horse", "house", "chair", "battery", "contest", "badminton", "soccer", "team", "police", "fighter"
         , "pasta", "tower", "plane", "world", "war", "two", "flight", "air", "lives", "string", "text", "static", "private"
-        , "void", "boolean", "arguments", "integer", "float", "fly", "sealion"};
+        , "void", "boolean", "arguments", "integer", "float", "fly", "sealion", "ball", "ice", "thirteen", "ice", "absorption", "adsorption"};
     private ArrayList<String> seenWords;
     private Start start;
     private SeenButton seenbutton;

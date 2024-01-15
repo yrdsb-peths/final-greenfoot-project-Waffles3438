@@ -16,12 +16,15 @@ public class AimResults extends AimTrainerGame
      */
     public AimResults()
     {
+        // add some text to the screen that displays information
         removeLabels();
         removeTarget();
         removeObject(count);
         result = new Label(getTarget().getTime() + " ms", 60);
         Label text = new Label("Your average time is: ", 60);
+        Label text1 = new Label("The average time is 400ms", 40);
         addObject(result, getWidth() / 2, getHeight() / 2 + 25);
         addObject(text, getWidth() / 2, getHeight() / 2 - 25);
+        addObject(text1, getWidth() / 2, getHeight() / 2 + 60);
     }
 }

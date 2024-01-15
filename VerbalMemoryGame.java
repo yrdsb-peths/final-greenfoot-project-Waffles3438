@@ -1,12 +1,6 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.util.ArrayList;
 
-/**
- * Write a description of class VerbalMemoryGame here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
- */
 public class VerbalMemoryGame extends World
 {
     private static boolean startgame = false;

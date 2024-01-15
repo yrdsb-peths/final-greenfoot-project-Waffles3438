@@ -2,12 +2,6 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.math.BigInteger;
 import java.util.Random;
 
-/**
- * Write a description of class NumberMemoryGame here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
- */
 public class NumberMemoryGame extends World
 {
     private static int level = 1;

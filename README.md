@@ -8,3 +8,4 @@
 
 ## Credits
 > Based off: https://humanbenchmark.com/
+> Made by: Benny Wang

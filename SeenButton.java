@@ -1,7 +1,6 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
-public class SeenButton
- extends Actor
+public class SeenButton extends Actor
 {
     private GreenfootImage normalImage;
     private GreenfootImage hoveredImage;

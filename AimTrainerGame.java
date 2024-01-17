@@ -45,6 +45,7 @@ public class AimTrainerGame extends World
      * removes labels
      */
     public void removeLabels(){
+        // removes texts
         removeObject(text2);
         removeObject(text1);
         removeObject(aimtrainer);
@@ -58,6 +59,7 @@ public class AimTrainerGame extends World
      * Creates a target
      */
     public void createTarget(){
+        // creates a target at random location
         removeObject(target);
         int x = Greenfoot.getRandomNumber(600);
         int y = Greenfoot.getRandomNumber(400);

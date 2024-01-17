@@ -17,7 +17,7 @@ public class VerbalMemoryGame extends World
         , "keyboard", "camera", "window", "laptop", "grade", "accounting", "engineering", "farmer", "farming", "auto", "who"
         , "rice", "dog", "cat", "horse", "house", "chair", "battery", "contest", "badminton", "soccer", "team", "police", "fighter"
         , "pasta", "tower", "plane", "world", "war", "two", "flight", "air", "lives", "string", "text", "static", "private"
-        , "void", "boolean", "arguments", "integer", "float", "fly", "sealion", "ball", "ice", "thirteen", "ice", "absorption", "adsorption"};
+        , "void", "boolean", "arguments", "integer", "float", "fly", "ice", "absorption", "adsorption"};
     private ArrayList<String> seenWords;
     private Start start;
     private SeenButton seenbutton;
@@ -66,36 +66,40 @@ public class VerbalMemoryGame extends World
         seenWords = new ArrayList<>();
     }
     
-    public void remove(){
-        removeObject(text);
-        removeObject(text2);
-        removeObject(start);
-    }
-    
     public void act(){
         if(startgame == true){
             setup();
+            
+            // grabs a word from newWords
             if(test == 0){
                 rng = Greenfoot.getRandomNumber(newWords.length);
                 randomword.setValue(newWords[rng]);
                 test = 1;
             }
+            
+            // if you click new and the word is new its added to seenWords list and + 1 score
             if(Greenfoot.mouseClicked(newbutton) && !seenWords.contains(newWords[rng])){
                 score++;
                 scorecount.setValue("Score: " + score);
                 seenWords.add(newWords[rng]);
                 test = 0;
             }
+            
+            // if you click new and word is not new, - 1 life
             else if(Greenfoot.mouseClicked(newbutton) && seenWords.contains(newWords[rng])){
                 life--;
                 lives.setValue("Lives: "+ life);
                 test = 0;
             }
+            
+            // if you click seen and the word is seen and + 1 score
             else if(Greenfoot.mouseClicked(seenbutton) && seenWords.contains(newWords[rng])){
                 score++;
                 scorecount.setValue("Score: " + score);
                 test = 0;
             }
+            
+            // if you click seen and its a new word, - 1 life
             else if(Greenfoot.mouseClicked(seenbutton) && !seenWords.contains(newWords[rng])){
                 life--;
                 lives.setValue("Lives: "+ life);
@@ -103,6 +107,7 @@ public class VerbalMemoryGame extends World
                 test = 0;
             }
             
+            // if you run out of lives then game over
             if(life == 0){
                 gameover();
             }
@@ -129,6 +134,15 @@ public class VerbalMemoryGame extends World
      */
     public static int getScore(){
         return score;
+    }
+    
+    /**
+     * Removes text
+     */
+    public void remove(){
+        removeObject(text);
+        removeObject(text2);
+        removeObject(start);
     }
     
     public void setup(){

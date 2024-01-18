@@ -1,12 +1,12 @@
 # Welcome to Human Benchmark!
 
-## What is Human Benchmark?
+## What is Human Benchmark? 😕
 > Human benchmark is a site that allows you to measure your abilities with games and tests.
 
-## How to launch
+## How to launch 🚀
 > Click on project.greenfoot and hit run in greenfoot. Play the tests and compare yourself to the average!
 
-## How to play
+## How to play 🎮
 <details>
 <summary>Reaction Time ⚡</summary>
 <br>
@@ -31,5 +31,5 @@ The game will display a number. Remember the number and after 5 seconds, input t
 A word will display on the screen. If this is the first time this word has been displayed in the game, press NEW. Otherwise, press SEEN. Your score is the amount of words you get right.
 </details>
 
-## Credits
+## Credits 🏢
 > Based off: https://humanbenchmark.com/ | Made by: Benny Wang
